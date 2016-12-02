@@ -1,0 +1,44 @@
+machine:
+    timezone:
+        Europe/Berlin
+    xcode:
+        version: "8.0"
+
+test:
+    pre:
+        - agvtool new-version -all $CIRCLE_BUILD_NUM
+        # -- IF BETA > ADD MARKETING VERSION NAME -BETA
+        # -- IF DEVELOPMENT > ADD MARKETING VERSION NAME -DEV
+    override:
+        - xcodebuild
+            -workspace ios-ci-test.xcworkspace
+            -scheme ci-test
+            -sdk iphonesimulator
+            clean test
+            | tee $CIRCLE_ARTIFACTS/test_xcodebuild.log
+            | xcpretty
+                -c
+                -r junit --output $CIRCLE_TEST_REPORTS/junit.xml
+                -r html --output $CIRCLE_TEST_REPORTS/report.html
+                -r json-compilation-database --output $CIRCLE_ARTIFACTS/test_compilation_database.json
+    post:
+        # - bundle exec slather coverage
+        #     --simple-output
+        #     --circleci
+        #     --coveralls
+        #     --workspace pubnative-ios-library.xcworkspace
+        #     --scheme library
+        #     --ignore "dependencies/*"
+        #     --ignore "library/library.test/*"
+        #     --ignore "library/library.demo/*"
+        #     --ignore "../*"
+        #     library/library.xcodeproj
+        - xcodebuild
+            -workspace library.xcworkspace
+            -scheme library
+            -sdk iphonesimulator
+            clean build
+            | tee $CIRCLE_ARTIFACTS/build_xcodebuild.log
+            | xcpretty
+                -c
+                -r json-compilation-database --output compile_commands.json
