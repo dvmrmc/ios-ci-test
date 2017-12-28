@@ -5,6 +5,6 @@
       location = "group:circle.yml">
    </FileRef>
    <FileRef
-      location = "group:ci-test.xcodeproj">
+      location = "group:ci-test/ci-test.xcodeproj">
    </FileRef>
 </Workspace>

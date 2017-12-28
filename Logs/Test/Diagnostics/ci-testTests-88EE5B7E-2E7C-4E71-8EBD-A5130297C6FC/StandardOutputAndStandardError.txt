@@ -1,0 +1,14 @@
+Test Suite 'Selected tests' started at 2017-12-28 15:57:58.548
+Test Suite 'ci-testTests.xctest' started at 2017-12-28 15:57:58.548
+Test Suite 'GeneralTests' started at 2017-12-28 15:57:58.549
+Test Case '-[ci_testTests.GeneralTests testFail]' started.
+/Users/dmacias/Documents/Repos/Zalon/ios-ci-test/ci-test/ci-testTests/GeneralTests.swift:29: error: -[ci_testTests.GeneralTests testFail] : XCTAssertTrue failed - 
+Test Case '-[ci_testTests.GeneralTests testFail]' failed (0.032 seconds).
+Test Case '-[ci_testTests.GeneralTests testSuccess]' started.
+Test Case '-[ci_testTests.GeneralTests testSuccess]' passed (0.000 seconds).
+Test Suite 'GeneralTests' failed at 2017-12-28 15:57:58.581.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 0.032 (0.033) seconds
+Test Suite 'ci-testTests.xctest' failed at 2017-12-28 15:57:58.582.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 0.032 (0.034) seconds
+Test Suite 'Selected tests' failed at 2017-12-28 15:57:58.582.
+	 Executed 2 tests, with 1 failure (0 unexpected) in 0.032 (0.035) seconds
