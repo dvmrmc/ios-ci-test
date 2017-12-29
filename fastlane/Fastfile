@@ -3,9 +3,33 @@ min_fastlane_version("2.71.0")
 
 platform :ios do
 
+  before_all do |lane|
+  	slackSafe(message: "started fastlane build")
+  end
+
   desc "test"
   lane :test do
-    puts("test 🚀 !!")
+    slackSafe(message: "test 🚀 !!")
     run_tests
   end
+
+  after_all do |lane|
+    
+  end
+
+  error do |lane, exception|
+    slackSafe(message: "Something wrong happened: #{exception}", success: false)
+  end
+
+end
+
+def slackSafe(options)
+  	message=options[:message]
+  	success=options[:success]?options[:success]:true
+
+  	if (ENV['slack_url'])
+  		slack(message: message, success: success)
+  	else
+  		puts("Non defined slack_url, avoiding: #{options}")
+  	end
 end
