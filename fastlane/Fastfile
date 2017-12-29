@@ -24,12 +24,13 @@ platform :ios do
 end
 
 def slackSafe(options)
+	
   	message=options[:message]
   	success=options[:success]?options[:success]:true
 
-  	if (ENV['slack_url'])
+  	if (ENV['SLACK_URL'])
   		slack(message: message, success: success)
   	else
-  		puts("Non defined slack_url, avoiding: #{options}")
+  		puts("Missing SLACK_URL, avoiding: #{options}")
   	end
 end
