@@ -6,5 +6,6 @@ platform :ios do
   desc "test"
   lane :test do
     puts("test 🚀 !!")
+    run_tests
   end
 end
